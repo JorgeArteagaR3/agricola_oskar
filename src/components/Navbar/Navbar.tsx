@@ -4,6 +4,12 @@ import Hero from "../Hero/Hero";
 import "./navbar.css";
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const navLinks = [
+        { name: "Home" },
+        { name: "About" },
+        { name: "Gallery" },
+        { name: "Blog" },
+    ];
     return (
         <header
             className="bg-myblack h-[300px] md:h-[450px] lg:h-[600px] p-[20px] md:px-[70px] relative 
@@ -12,22 +18,28 @@ const Navbar = () => {
             <nav className="flex items-center justify-between mb-[10px] md:mb-[30px]">
                 <img
                     src={Logo}
-                    className="h-[30px] md:h-[60px] z-20"
+                    className="h-[30px] md:h-[60px] z-40"
                     alt="logo"
                 />
-                {isOpen && (
-                    <ul className="list-none w-full h-screen fixed left-0 top-0 text-left bg-mybg flex items-center justify-center flex-col gap-5 text-2xl z-10">
-                        <li>Home</li>
-                        <li>About</li>
-                        <li>Gallery</li>
-                        <li>Blog</li>
-                    </ul>
-                )}
+                <ul
+                    className={
+                        isOpen
+                            ? "list-none fixed w-screen h-screen overflow-hidden left-0 top-0 text-left bg-mybg flex items-center justify-center flex-col gap-5 text-2xl z-30"
+                            : "hidden lg:block lg:flex lg:gap-16 text-base justify-self-center"
+                    }
+                >
+                    {navLinks.map((item) => (
+                        <li className={isOpen ? "" : "text-white"}>
+                            {item.name}
+                        </li>
+                    ))}
+                </ul>
+
                 <div
                     className={
                         isOpen
-                            ? "menu w-[20px] h-[15px] md:w-[30px] md:h-[22.5px] flex effect z-20 "
-                            : "menu w-[20px] h-[15px] md:w-[30px] md:h-[22.5px] flex"
+                            ? "menu flex w-[20px] h-[15px] md:w-[30px] md:h-[22.5px] flex effect z-40"
+                            : "menu flex w-[20px] h-[15px] md:w-[30px] md:h-[22.5px] flex z-20 lg:invisible"
                     }
                     onClick={() => {
                         setIsOpen(!isOpen);

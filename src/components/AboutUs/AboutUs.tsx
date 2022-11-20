@@ -4,7 +4,7 @@ import AboutThirdPic from "../../assests/images/about-3.jpg";
 
 const AboutUs = () => {
     return (
-        <section>
+        <section className="mb-32 md:mb-52 lg:mb-72">
             <div
                 className="py-5 px-[50px] md:px-[10%] md:justify-center w-[350px] h-[350px] md:w-[600px] md:h-[600px] lg:w-[900px] lg:h-[900px] bg-white rounded-full -translate-x-10 flex 
                 items-center flex-col gap-[15px] md:gap-[30px] lg:gap-[50px]  text-center relative"
