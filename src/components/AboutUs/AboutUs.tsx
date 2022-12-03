@@ -20,7 +20,7 @@ const AboutUs = () => {
                     Avocado production from Casma Valley. Our goal is to bring
                     high-quality fruits to international markets.
                 </p>
-                <div className="absolute w-[30%] h-[30%] top-2 right-[-30px] md:right-[-50px]">
+                <div className="absolute w-[35%] h-[30%] top-2 right-[-45px] md:right-[-80px] lg:right-[-130px]">
                     <img
                         className=" w-full h-full rounded-[20px] rotate-[-20deg]"
                         src="https://agricola-oskar-8kgw8mwnj.now.sh/static/images/chankillofarmersmangokent2.jpg"

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Logo from "../../assests/images/logo.png";
 import Hero from "../Hero/Hero";
 import "./navbar.css";
@@ -10,6 +10,11 @@ const Navbar = () => {
         { name: "Gallery" },
         { name: "Blog" },
     ];
+    useEffect(() => {
+        isOpen
+            ? (document.body.style.overflow = "hidden")
+            : (document.body.style.overflow = "");
+    }, [isOpen]);
     return (
         <header
             className="bg-myblack h-[300px] md:h-[450px] lg:h-[600px] p-[20px] md:px-[70px] relative 
@@ -29,7 +34,10 @@ const Navbar = () => {
                     }
                 >
                     {navLinks.map((item) => (
-                        <li className={isOpen ? "" : "text-white"}>
+                        <li
+                            key={item.name}
+                            className={isOpen ? "" : "text-white"}
+                        >
                             {item.name}
                         </li>
                     ))}
