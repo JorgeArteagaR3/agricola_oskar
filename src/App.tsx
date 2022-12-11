@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import AboutUs from "./components/AboutUs/AboutUs";
+import Featured from "./components/Featured/Featured";
 import Gallery from "./components/Gallery/Gallery";
 import Navbar from "./components/Navbar/Navbar";
 
@@ -11,6 +12,7 @@ function App() {
             <main className="w-full">
                 <AboutUs />
                 <Gallery />
+                <Featured />
             </main>
         </div>
     );

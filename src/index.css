@@ -2,7 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap");
-
+@layer components {
+    .h2-title {
+        @apply text-primary font-bold text-lg md:text-2xl mt-[20px] lg:text-4xl mx-auto 
+        text-center mb-[10px] md:mb-[20px] lg:mb-[30px];
+    }
+}
 * {
     font-family: "Poppins", sans-serif;
     box-sizing: border-box;
