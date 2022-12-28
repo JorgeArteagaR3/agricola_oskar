@@ -5,7 +5,7 @@
 @layer components {
     .h2-title {
         @apply text-primary font-bold text-lg md:text-2xl mt-[20px] lg:text-4xl mx-auto 
-        text-center mb-[10px] md:mb-[20px] lg:mb-[30px];
+        text-center mb-[10px] md:mb-[20px] lg:mb-[30px] first-letter:uppercase;
     }
 }
 * {

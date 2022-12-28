@@ -1,0 +1,11 @@
+@media (min-width: 768px) {
+    .custom-article:nth-child(2) img {
+        height: 230px;
+    }
+}
+@media (min-width: 1024px) {
+    .custom-article:nth-child(2) img {
+        height: 330px;
+        color: rgba(0, 0, 0, 0.9);
+    }
+}

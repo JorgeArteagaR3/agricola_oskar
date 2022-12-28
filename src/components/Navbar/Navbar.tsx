@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Logo from "../../assests/images/logo.png";
 import Hero from "../Hero/Hero";
+import { Link } from "react-router-dom";
 import "./navbar.css";
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const navLinks = [
-        { name: "Home" },
-        { name: "About" },
-        { name: "Gallery" },
-        { name: "Blog" },
+        { name: "Home", path: "/" },
+        { name: "About", path: "/" },
+        { name: "Gallery", path: "/" },
+        { name: "Blog", path: "/blog" },
     ];
     useEffect(() => {
         isOpen
@@ -34,12 +35,13 @@ const Navbar = () => {
                     }
                 >
                     {navLinks.map((item) => (
-                        <li
+                        <Link
+                            to={item.path}
                             key={item.name}
                             className={isOpen ? "" : "text-white"}
                         >
                             {item.name}
-                        </li>
+                        </Link>
                     ))}
                 </ul>
 
