@@ -32,8 +32,8 @@ const Blog = (): any => {
         value,
         isInline,
     }: {
-        value: Record<string, any>;
-        isInline: Record<string, any>;
+        value: any;
+        isInline: any;
     }) => {
         const { width, height } = getImageDimensions(value);
         return (
