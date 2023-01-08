@@ -39,6 +39,9 @@ const Navbar = () => {
                             to={item.path}
                             key={item.name}
                             className={isOpen ? "" : "text-white"}
+                            onClick={() => {
+                                setIsOpen(false);
+                            }}
                         >
                             {item.name}
                         </Link>
