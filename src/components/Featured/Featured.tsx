@@ -34,7 +34,7 @@ const Featured = () => {
                         <Link
                             to={`/blog/${item.slug.current}`}
                             key={item._id}
-                            className="first:col-start-1 first:col-end-3 md:first:col-end-1 md:first:row-start-1 md:first:row-end-3 post-article"
+                            className="first:col-start-1 first:col-end-3 md:first:col-end-1 md:first:row-start-1 md:first:row-end-3 post-article md:hover:scale-110 duration-300"
                             onClick={() => {
                                 window.scrollTo(0, 0);
                             }}

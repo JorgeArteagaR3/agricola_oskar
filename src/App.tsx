@@ -5,6 +5,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Blog from "./components/Blog/Blog";
 import Footer from "./components/Footer/Footer";
+import AboutUs from "./components/AboutUs/AboutUs";
+import Gallery from "./components/Gallery/Gallery";
 function App() {
     return (
         <BrowserRouter>
@@ -19,6 +21,16 @@ function App() {
                     <Route
                         path="/blog/:slug"
                         element={<Blog />}
+                    />
+                    <Route />
+                    <Route
+                        path="/about"
+                        element={<AboutUs />}
+                    />
+                    <Route />
+                    <Route
+                        path="/gallery"
+                        element={<Gallery />}
                     />
                     <Route />
                 </Routes>

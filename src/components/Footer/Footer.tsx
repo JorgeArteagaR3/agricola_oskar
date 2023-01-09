@@ -5,7 +5,7 @@ import { AiOutlineTwitter } from "react-icons/ai";
 const Footer = () => {
     const socialIcons = [FaFacebookF, AiOutlineTwitter, FaInstagram];
     return (
-        <footer className="bg-myblack">
+        <footer className="bg-myblack mt-7 md:mt-10">
             <div className="flex flex-col items-center justify-center py-[50px]">
                 <div className="flex flex-col items-center justify-center gap-5 md:w-[70%]">
                     <h3 className="text-mybg text-2xl md:text-[28px] lg:text-[32px] font-bold tracking-[2px]">

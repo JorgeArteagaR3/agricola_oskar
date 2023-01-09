@@ -117,6 +117,7 @@ const Blog = (): any => {
                         <Link
                             to={`/blog/${item.slug.current}`}
                             key={item._id}
+                            className="md:hover:scale-90 duration-300"
                             onClick={() => {
                                 window.scrollTo(0, 0);
                             }}

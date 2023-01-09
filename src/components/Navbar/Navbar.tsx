@@ -7,8 +7,8 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const navLinks = [
         { name: "Home", path: "/" },
-        { name: "About", path: "/" },
-        { name: "Gallery", path: "/" },
+        { name: "About", path: "/about" },
+        { name: "Gallery", path: "/gallery" },
         { name: "Blog", path: "/blog" },
     ];
     useEffect(() => {
@@ -16,17 +16,26 @@ const Navbar = () => {
             ? (document.body.style.overflow = "hidden")
             : (document.body.style.overflow = "");
     }, [isOpen]);
+
+    const handleChange = () => {
+        setIsOpen(false);
+    };
     return (
         <header
             className="bg-myblack h-[300px] md:h-[450px] lg:h-[600px] p-[20px] md:px-[70px] relative 
         rounded-b-[40px] lg:rounded-b-[70px] mb-[50px] md:mb-[90px]"
         >
             <nav className="flex items-center justify-between mb-[10px] md:mb-[30px]">
-                <img
-                    src={Logo}
-                    className="h-[30px] md:h-[60px] z-40"
-                    alt="logo"
-                />
+                <Link
+                    to={"/"}
+                    className="hover:scale-125 duration-300"
+                >
+                    <img
+                        src={Logo}
+                        className="h-[30px] md:h-[60px] z-40"
+                        alt="logo"
+                    />
+                </Link>
                 <ul
                     className={
                         isOpen
@@ -35,16 +44,19 @@ const Navbar = () => {
                     }
                 >
                     {navLinks.map((item) => (
-                        <Link
-                            to={item.path}
-                            key={item.name}
-                            className={isOpen ? "" : "text-white"}
-                            onClick={() => {
-                                setIsOpen(false);
-                            }}
-                        >
-                            {item.name}
-                        </Link>
+                        <li>
+                            <Link
+                                to={item.path}
+                                className={
+                                    isOpen
+                                        ? ""
+                                        : "text-white md:hover:text-2xl duration-300"
+                                }
+                                onClick={handleChange}
+                            >
+                                {item.name}
+                            </Link>
+                        </li>
                     ))}
                 </ul>
 

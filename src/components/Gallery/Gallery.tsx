@@ -21,7 +21,7 @@ const Gallery = () => {
                 {galleryImages.map((item) => (
                     <div
                         key={item.mainImage?.asset._id}
-                        className="w-full h-[200px] md:h-[full] gallery-img lg:h-[400px] lg:col-start-auto cursor-pointer  hover:opacity-80"
+                        className="w-full h-[200px] md:h-[full] gallery-img lg:h-[400px] lg:col-start-auto cursor-pointer md:hover:scale-105 duration-300"
                     >
                         <img
                             src={item.mainImage?.asset.url}
