@@ -37,6 +37,7 @@ const MorePosts = ({ keyword }: { keyword: string }) => {
                             window.scrollTo(0, 0);
                         }}
                         className="md:hover:scale-110 duration-300"
+                        key={post._id}
                     >
                         <article
                             key={post._id}

@@ -19,7 +19,7 @@ const Gallery = () => {
             <h2 className="h2-title">Gallery</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 md:grid-rows-2 gap-3 md:gap-4 lg:gap-6">
                 {galleryImages.map((item) => (
-                    <div
+                    <figure
                         key={item.mainImage?.asset._id}
                         className="w-full h-[200px] md:h-[full] gallery-img lg:h-[400px] lg:col-start-auto cursor-pointer md:hover:scale-105 duration-300"
                     >
@@ -32,7 +32,7 @@ const Gallery = () => {
                             }}
                             className="w-full h-full object-fill rounded-[10px] md:rounded-[20px] lg:rounded-[40px] md:object-cover"
                         />
-                    </div>
+                    </figure>
                 ))}
                 {isModalOpen && (
                     <div

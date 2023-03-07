@@ -1,4 +1,3 @@
-import React from "react";
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -7,6 +6,7 @@ import Blog from "./components/Blog/Blog";
 import Footer from "./components/Footer/Footer";
 import AboutUs from "./components/AboutUs/AboutUs";
 import Gallery from "./components/Gallery/Gallery";
+import { Blogs } from "./components/Blogs/Blogs";
 function App() {
     return (
         <BrowserRouter>
@@ -31,6 +31,11 @@ function App() {
                     <Route
                         path="/gallery"
                         element={<Gallery />}
+                    />
+                    <Route />
+                    <Route
+                        path="/blog"
+                        element={<Blogs />}
                     />
                     <Route />
                 </Routes>

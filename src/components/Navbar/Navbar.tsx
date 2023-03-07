@@ -3,8 +3,18 @@ import Logo from "../../assests/images/logo.png";
 import Hero from "../Hero/Hero";
 import { Link } from "react-router-dom";
 import "./navbar.css";
+import { SubscribeBtn } from "../SubscribeBtn/SubscribeBtn";
+import { NotificationPopUp } from "../NotificationPopUp/NotificationPopUp";
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [isNotificationShowing, setIsNotificationShowing] = useState(true);
+
+    const showNotificationPopUp = () => {
+        setIsNotificationShowing(true);
+        setTimeout(() => {
+            setIsNotificationShowing(false);
+        }, 4000);
+    };
     const navLinks = [
         { name: "Home", path: "/" },
         { name: "About", path: "/about" },
@@ -17,14 +27,16 @@ const Navbar = () => {
             : (document.body.style.overflow = "");
     }, [isOpen]);
 
-    const handleChange = () => {
-        setIsOpen(false);
+    const handleModal = () => {
+        setIsOpen(!isOpen);
     };
+
     return (
-        <header
-            className="bg-myblack h-[300px] md:h-[450px] lg:h-[600px] p-[20px] md:px-[70px] relative 
-        rounded-b-[40px] lg:rounded-b-[70px] mb-[50px] md:mb-[90px]"
-        >
+        <header className="relative bg-myblack h-[300px] md:h-[450px] lg:h-[600px] p-[20px] md:px-[70px] rounded-b-[40px] lg:rounded-b-[70px] mb-[50px] md:mb-[90px]">
+            <NotificationPopUp
+                isNotificationShowing={isNotificationShowing}
+                setIsNotificationShowing={setIsNotificationShowing}
+            />
             <nav className="flex items-center justify-between mb-[10px] md:mb-[30px]">
                 <Link
                     to={"/"}
@@ -44,7 +56,7 @@ const Navbar = () => {
                     }
                 >
                     {navLinks.map((item) => (
-                        <li>
+                        <li key={item.name}>
                             <Link
                                 to={item.path}
                                 className={
@@ -52,7 +64,7 @@ const Navbar = () => {
                                         ? ""
                                         : "text-white md:hover:text-2xl duration-300"
                                 }
-                                onClick={handleChange}
+                                onClick={() => setIsOpen(false)}
                             >
                                 {item.name}
                             </Link>
@@ -60,38 +72,21 @@ const Navbar = () => {
                     ))}
                 </ul>
 
-                <div
+                <button
                     className={
                         isOpen
                             ? "menu flex w-[20px] h-[15px] md:w-[30px] md:h-[22.5px] flex effect z-40"
                             : "menu flex w-[20px] h-[15px] md:w-[30px] md:h-[22.5px] flex z-20 lg:invisible"
                     }
-                    onClick={() => {
-                        setIsOpen(!isOpen);
-                    }}
+                    onClick={handleModal}
                 >
                     <span></span>
                     <span></span>
                     <span></span>
-                </div>
+                </button>
             </nav>
             <Hero />
-            <div
-                className="mx-auto w-full flex h-[40px] w-[290px] absolute
-            bottom-[-20px] inset-x-0 shadow rounded-full justify-between py-[5px] md:py-[10px] pl-[20px] pr-[10px] md:inset-x-auto md:h-[60px]
-            md:bottom[-30px] md:w-[400px] "
-                style={{ background: "white" }}
-            >
-                <input
-                    className="bg-red-400 focus:outline-none w-6/12 text-xs md:text-sm "
-                    placeholder="example@gmail.com"
-                    style={{ background: "none" }}
-                    type="email"
-                />
-                <button className="bg-primary px-[10px] h-full font-bold text-white text-xs md:text-sm w-5/12 rounded-full">
-                    Contact Us
-                </button>
-            </div>
+            <SubscribeBtn showNotificationPopUp={showNotificationPopUp} />
         </header>
     );
 };
