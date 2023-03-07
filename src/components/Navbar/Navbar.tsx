@@ -7,7 +7,7 @@ import { SubscribeBtn } from "../SubscribeBtn/SubscribeBtn";
 import { NotificationPopUp } from "../NotificationPopUp/NotificationPopUp";
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [isNotificationShowing, setIsNotificationShowing] = useState(true);
+    const [isNotificationShowing, setIsNotificationShowing] = useState(false);
 
     const showNotificationPopUp = () => {
         setIsNotificationShowing(true);
