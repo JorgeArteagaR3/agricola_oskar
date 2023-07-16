@@ -1,4 +1,4 @@
-import React, { FormEvent, useRef, useState } from "react";
+import { FormEvent, useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 
 export const SubscribeBtn = ({
@@ -7,8 +7,7 @@ export const SubscribeBtn = ({
     showNotificationPopUp: () => void;
 }) => {
     const [email, setEmail] = useState("");
-    const publicKey = "GhtGl21PNs9VTfQFj";
-
+    const PUBLIC_KEY = process.env.REACT_APP_EMAIL_KEY;
     function validateEmail(text: string) {
         const emailPattern = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/;
         return emailPattern.test(text);
@@ -25,11 +24,11 @@ export const SubscribeBtn = ({
                         from_name: "Agricola OSKAR EIRL",
                         user_email: email,
                     },
-                    publicKey
+                    PUBLIC_KEY
                 )
                 .then((res) => {
                     console.log(res.text);
-                    if (res.status == 200) {
+                    if (res.status === 200) {
                         showNotificationPopUp();
                     }
                 })
@@ -43,7 +42,7 @@ export const SubscribeBtn = ({
 
     return (
         <form
-            className="mx-auto w-full flex h-[40px] w-[290px] absolute
+            className="mx-auto flex h-[40px] w-[290px] absolute
                         bottom-[-20px] inset-x-0 shadow rounded-full justify-between py-[5px] md:py-[10px] pl-[20px] pr-[10px] md:inset-x-auto md:h-[60px]
                         md:bottom[-30px] md:w-[400px] "
             style={{ background: "white" }}

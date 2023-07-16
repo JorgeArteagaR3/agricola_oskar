@@ -7,37 +7,18 @@ import Footer from "./components/Footer/Footer";
 import AboutUs from "./components/AboutUs/AboutUs";
 import Gallery from "./components/Gallery/Gallery";
 import { Blogs } from "./components/Blogs/Blogs";
+
 function App() {
     return (
         <BrowserRouter>
             <div className="App bg-mybg max-w-[1024px] mx-auto">
                 <Navbar />
                 <Routes>
-                    <Route
-                        path="/"
-                        element={<Home />}
-                    />
-                    <Route />
-                    <Route
-                        path="/blog/:slug"
-                        element={<Blog />}
-                    />
-                    <Route />
-                    <Route
-                        path="/about"
-                        element={<AboutUs />}
-                    />
-                    <Route />
-                    <Route
-                        path="/gallery"
-                        element={<Gallery />}
-                    />
-                    <Route />
-                    <Route
-                        path="/blog"
-                        element={<Blogs />}
-                    />
-                    <Route />
+                    <Route path="/" element={<Home />} />
+                    <Route path="/blog/:slug" element={<Blog />} />
+                    <Route path="/about" element={<AboutUs />} />
+                    <Route path="/gallery" element={<Gallery />} />
+                    <Route path="/blog" element={<Blogs />} />
                 </Routes>
                 <Footer />
             </div>

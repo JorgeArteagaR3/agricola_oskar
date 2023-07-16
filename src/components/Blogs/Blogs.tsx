@@ -1,21 +1,14 @@
-import { useEffect, useState } from "react";
-import { getBlogs } from "../../services/getBlogs";
 import { featured } from "../../types";
 import { reduceText } from "../../utils/utils";
 import { Link } from "react-router-dom";
+import { useGetAllBlogs } from "../../hooks/useGetAllBlogs";
 export const Blogs = () => {
-    const [blogArticles, setBlogArticles] = useState([]);
-    useEffect(() => {
-        getBlogs().then((data) => {
-            setBlogArticles(data);
-        });
-    }, []);
-
+    const allBlogPosts = useGetAllBlogs();
     return (
         <div className="px-5 md:px-8 lg:px-12 min-h-[1000px]">
             <h2 className="text-center h2-title">Articles</h2>
             <div className="grid gap-4 md:gap-8 lg:gap-10 md:grid-cols-2 lg:grid-cols-3">
-                {blogArticles.map((blog: featured) => (
+                {allBlogPosts.map((blog: featured) => (
                     <Link
                         to={"/blog/" + blog.slug.current}
                         onClick={() => {

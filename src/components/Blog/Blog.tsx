@@ -1,119 +1,34 @@
-import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import sanityClient from "../../client";
+import { Link } from "react-router-dom";
 import { PortableText } from "@portabletext/react";
-import urlBuilder from "@sanity/image-url/";
-import { getImageDimensions } from "@sanity/asset-utils";
 import { featured } from "../../types";
 import "./blog.css";
+import { useBlog } from "../../hooks/useBlog";
+
 const Blog = (): any => {
-    const [blogPost, setBlogPost] = useState<any>({});
-    const [extraPosts, setExtraPosts] = useState([]);
-    const { slug } = useParams();
+    const { blog, imageComponent, featuredBlogs, error } = useBlog();
 
-    useEffect(() => {
-        sanityClient
-            .fetch(
-                `*[_type == "post" && slug.current == '${slug}'][0]{
-            title,
-            body,
-            publishedAt, 
-            mainImage{
-            asset->{
-            url
-                        }
-                }
-          }`
-            )
-            .then((data) => {
-                setBlogPost(data);
-                document.title = data.title;
-            });
-    }, [slug]);
-
-    useEffect(() => {
-        sanityClient
-            .fetch(
-                `*[_type == "post"]{
-            _id,
-            title,
-            slug,
-            mainImage{
-            asset->{
-            url
-                        }
-                }
-          }`
-            )
-            .then((data) => {
-                setExtraPosts(data);
-            });
-    }, []);
-    const SampleImageComponent = ({
-        value,
-        isInline,
-    }: {
-        value: any;
-        isInline: any;
-    }) => {
-        const { width, height } = getImageDimensions(value);
+    if (error)
         return (
-            <img
-                src={urlBuilder(sanityClient)
-                    .image(value)
-                    .width(isInline ? 100 : 800)
-                    .fit("max")
-                    .auto("format")
-                    .url()}
-                alt={value.alt || " "}
-                loading="lazy"
-                style={{
-                    // Display alongside text if image appears inside a block text span
-                    display: isInline ? "inline-block" : "block",
-
-                    // Avoid jumping around with aspect-ratio CSS property
-                    aspectRatio: width / height,
-                }}
-            />
+            <p className="opacity-50 w-full h-[400px] grid place-items-center font-bold text-2xl">
+                {error}
+            </p>
         );
-    };
-    const imageComponent = {
-        types: {
-            image: SampleImageComponent,
-            // Any other custom types you have in your content
-            // Examples: mapLocation, contactForm, code, featuredProjects, latestNews, etc.
-        },
-    };
-    const dateToString = (text: string) => {
-        const d = new Date(text).toString();
-        const newarr = d.split(" ").slice(1, 4);
-        const [a, b, c] = newarr;
-        const mydate = `${a} ${b}, ${c}`;
-
-        return mydate.toUpperCase();
-    };
-    dateToString(blogPost.publishedAt);
 
     return (
         <section className="mb-10 blog-container">
             <div className="mx-auto blog flex flex-col gap-3 px-6 min-h-[800px] mb-5">
                 <div>
-                    <p className="opacity-50">
-                        {dateToString(blogPost.publishedAt)}
-                    </p>
+                    <p className="opacity-50">{blog.date}</p>
                     <h2 className="font-bold text-lg md:text-2xl lg:text-4xl">
-                        {blogPost.title}
+                        {blog.title}
                     </h2>
                 </div>
-                <PortableText
-                    value={blogPost.body}
-                    components={imageComponent}
-                />
+                <PortableText value={blog.body} components={imageComponent} />
             </div>
             <div className="mx-auto blog px-6">
                 <h3 className="font-bold text-2xl mb-5">Featured</h3>
                 <div className="flex flex-col gap-5 md:grid md:grid-cols-2 lg:grid-cols-1">
-                    {extraPosts.map((item: featured) => (
+                    {featuredBlogs.map((item: featured) => (
                         <Link
                             to={`/blog/${item.slug.current}`}
                             key={item._id}
